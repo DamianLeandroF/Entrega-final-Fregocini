@@ -1,0 +1,42 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+
+
+{% block contenido %}
+
+    <main>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Lista de Alumnos</title>
+        </head>
+        <body>
+            <h2>Lista de Alumnos</h2>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Número de Camada</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alumno in alumnos %}
+                    <tr>
+                        <td>{{ alumno.nombre }}</td>
+                        <td>{{ alumno.numero_camada }}</td>
+                        <td><a href="{% url 'elimina_alumno' alumno.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                            <a href="{% url 'edita_alumno' alumno.id %}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i> Editar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </body>
+        </html>
+    </main>
+
+
+
+{% endblock %}

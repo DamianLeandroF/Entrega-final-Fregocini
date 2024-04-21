@@ -1,0 +1,37 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenido %}
+    <main>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Lista de Cursos</title>
+        </head>
+        <body>
+            <h2>Lista de Cursos</h2>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Camada</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.nombre }}</td>
+                        <td>{{ curso.camada }}</td>
+                        <td>
+                            <a href="{% url 'elimina_curso' curso.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                            <!-- Agregar el enlace para editar -->
+                            <a href="{% url 'edita_curso' curso.id %}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i> Editar</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </body>
+    </main>
+{% endblock %}

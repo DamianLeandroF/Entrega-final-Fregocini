@@ -1,0 +1,26 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Alumnos</title>
+</head>
+<body>
+    <h2>Buscar Alumnos</h2>
+    <form method="get">
+        <input type="text" name="nombre" placeholder="Nombre del alumno" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <ul>
+        {% for alumno in alumnos %}
+        <li>{{ alumno.nombre }}</li>
+        {% empty %}
+        <li>No se encontraron alumnos.</li>
+        {% endfor %}
+    </ul>
+</body>
+
+{% endblock %}

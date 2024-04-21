@@ -1,0 +1,25 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Profesores</title>
+</head>
+<body>
+    <h2>Buscar Profesores</h2>
+    <form method="get">
+        <input type="text" name="nombre" placeholder="Nombre del profesor" required>
+        <button type="submit">Buscar</button>
+    </form>
+    <ul>
+        {% for profesor in profesores %}
+        <li>{{ profesor.nombre }}</li>
+        {% empty %}
+        <li>No se encontraron profesores.</li>
+        {% endfor %}
+    </ul>
+</body>
+{% endblock %}

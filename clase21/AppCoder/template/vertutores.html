@@ -1,0 +1,41 @@
+{% extends "padre.html" %}
+{% load static %}
+
+{% block contenido %}
+    <main>
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Lista de Tutores</title>
+        </head>
+        <body>
+            <h2>Lista de Tutores</h2>
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Curso</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for tutor in tutores %}
+                    <tr>
+                        <td>{{ tutor.nombre }}</td>
+                        <td>{{ tutor.curso.nombre }}</td>
+                        <td>
+                            <a href="{% url 'elimina_profesor' tutor.id %}" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </a>
+                            <a href="{% url 'edita_profesor' tutor.id %}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i> Editar</a>
+
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </body>
+    </main>
+{% endblock %}
+
+

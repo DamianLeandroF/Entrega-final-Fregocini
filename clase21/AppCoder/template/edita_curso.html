@@ -1,0 +1,11 @@
+{% extends "padre.html" %}
+{% block contenido %}
+<main>
+    <h2>Editar Curso</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+</main>
+{% endblock %}

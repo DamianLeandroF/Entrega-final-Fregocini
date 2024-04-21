@@ -1,0 +1,20 @@
+
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenido %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Curso</title>
+
+<body>
+    <h2>Agregar Curso</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Agregar Curso</button>
+    </form>
+</body>
+{% endblock %}
+
