@@ -1,42 +1,45 @@
 {% extends "padre.html" %}
-
 {% load static %}
 
-
-
 {% block contenido %}
-
     <main>
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Lista de Alumnos</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         </head>
         <body>
-            <h2>Lista de Alumnos</h2>
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Número de Camada</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for alumno in alumnos %}
-                    <tr>
-                        <td>{{ alumno.nombre }}</td>
-                        <td>{{ alumno.numero_camada }}</td>
-                        <td><a href="{% url 'elimina_alumno' alumno.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
-                            <a href="{% url 'edita_alumno' alumno.id %}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i> Editar</a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <div class="container">
+                <h2 class="mt-4 mb-4">Lista de Alumnos</h2>
+                <a class="btn btn-primary mb-2" href="{% url 'agregar_alumno' %}">Agregar Alumno</a>
+                <a class="btn btn-primary mb-2" href="{% url 'buscar_alumnos' %}">Buscar Alumno</a>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Número de Camada</th>
+                            {% if user.is_authenticated %}
+                                <th>Acciones</th>
+                            {% endif %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alumno in alumnos %}
+                            <tr>
+                                <td>{{ alumno.nombre }}</td>
+                                <td>{{ alumno.numero_camada }}</td>
+                                {% if user.is_authenticated %}
+                                    <td>
+                                        <a href="{% url 'elimina_alumno' alumno.id %}" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</a>
+                                        <a href="{% url 'edita_alumno' alumno.id %}" class="btn btn-outline-primary"><i class="bi bi-pencil"></i> Editar</a>
+                                    </td>
+                                {% endif %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </body>
-        </html>
     </main>
-
-
-
 {% endblock %}

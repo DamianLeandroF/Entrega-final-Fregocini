@@ -195,7 +195,15 @@ def edita_profesor(request, id):
 
     return render(request, 'edita_profesor.html', {'form': form})
 
-
+def registro(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('login')  
+    else:
+        form = UserCreationForm()
+    return render(request, 'registro.html', {'form': form})
 
 def login_view(request):
     if request.method == 'POST':
@@ -214,12 +222,3 @@ def logout_view(request):
     return redirect('home')
 
 
-def registro(request):
-    if request.method == 'POST':
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('login')  
-    else:
-        form = UserCreationForm()
-    return render(request, 'registro.html', {'form': form})
